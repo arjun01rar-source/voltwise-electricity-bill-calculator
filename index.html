@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#08111f" />
+  <meta name="description" content="VoltWise electricity bill calculator — transparent, itemised energy estimates." />
+  <title>VoltWise — Smart Electricity Billing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="VoltWise home">
+      <span class="brand-symbol">V<span>ϟ</span></span>
+      <span class="brand-copy">VOLTWISE<small>ENERGY MADE CLEAR</small></span>
+    </a>
+    <nav class="nav-links"><a class="active" href="#calculator">Calculator</a><a href="#insights">Insights</a><a href="#history">History</a></nav>
+    <div class="header-actions"><span class="live-status"><i></i> ESTIMATOR ONLINE</span><button id="themeToggle" class="icon-button" aria-label="Toggle light mode">☼</button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> SMART UTILITY EXPERIENCE <span class="eyebrow-tag">STUDENT OOP PROJECT</span></div>
+        <h1>Power your home.<br><em>Understand every unit.</em></h1>
+        <p class="hero-description">A clearer way to estimate your electricity bill. Choose your region, add your meter details, and get a beautifully itemised statement in seconds.</p>
+        <div class="hero-trust"><span>✦ Transparent breakdown</span><span>✦ Slab-wise calculation</span><span>✦ Branded PDF statement</span></div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="energy-core"><span class="core-spark">ϟ</span><span class="core-label">ENERGY<br>INTELLIGENCE</span></div>
+        <div class="float-card float-top"><span class="float-dot"></span><span>LIVE ESTIMATE</span><b>READY</b></div>
+        <div class="float-card float-bottom"><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i></span><span>SMART<br>BREAKDOWN</span></div>
+      </div>
+    </section>
+
+    <section class="region-block">
+      <div class="section-top"><div><div class="section-kicker">01 — YOUR REGION</div><h2>Where is your connection?</h2></div><p>Tariff profile changes with your selected region.</p></div>
+      <div class="region-grid">
+        <button class="region-card active" data-region="Delhi"><span class="region-art delhi">D</span><span class="region-text"><b>Delhi</b><small>National Capital Territory</small></span><span class="region-check">✓</span></button>
+        <button class="region-card" data-region="Haryana"><span class="region-art haryana">H</span><span class="region-text"><b>Haryana</b><small>State tariff profile</small></span><span class="region-check">✓</span></button>
+        <button class="region-card" data-region="Mumbai"><span class="region-art mumbai">M</span><span class="region-text"><b>Mumbai</b><small>City tariff profile</small></span><span class="region-check">✓</span></button>
+      </div>
+      <div class="tariff-disclaimer"><span>ⓘ</span> Academic demo tariff profiles are used for this project. They are illustrative values, not official electricity rates or a payment demand.</div>
+    </section>
+
+    <section class="calculator-layout" id="calculator">
+      <div class="input-card glass-card">
+        <div class="card-heading"><div><div class="section-kicker">02 — BILLING DETAILS</div><h2>Build your estimate</h2><p>Fill in your connection and meter information.</p></div><span class="heading-icon">⌁</span></div>
+        <form id="billForm">
+          <div class="form-section-title"><span>Customer information</span><i></i></div>
+          <div class="field-grid">
+            <div class="field full"><label for="customerName">Full name <b>*</b></label><input id="customerName" required maxlength="60" placeholder="Name on the electricity connection"></div>
+            <div class="field"><label for="customerId">Consumer / account ID</label><input id="customerId" maxlength="24" placeholder="e.g. VW-204815"></div>
+            <div class="field"><label for="meterNumber">Meter number</label><input id="meterNumber" maxlength="24" placeholder="Meter serial number"></div>
+            <div class="field full"><label for="address">Service address</label><input id="address" maxlength="100" placeholder="House, street, city"></div>
+          </div>
+          <div class="form-section-title"><span>Consumption details</span><i></i></div>
+          <div class="field-grid">
+            <div class="field"><label for="connectionType">Connection category</label><select id="connectionType"><option value="domestic">Domestic / Residential</option><option value="commercial">Commercial</option></select></div>
+            <div class="field"><label for="billingMonth">Billing date</label><input id="billingMonth" type="date"></div>
+            <div class="field"><label for="previousReading">Previous meter reading</label><input id="previousReading" type="number" min="0" step="1" placeholder="e.g. 1250"></div>
+            <div class="field"><label for="currentReading">Current meter reading</label><input id="currentReading" type="number" min="0" step="1" placeholder="e.g. 1495"></div>
+            <div class="field full"><label for="units">Units consumed (kWh) <b>*</b></label><div class="units-wrap"><input id="units" type="number" min="0" max="100000" step="1" placeholder="Enter units directly if readings are unavailable" required><span>kWh</span></div><div class="field-hint" id="readingHint">Enter the units consumed, or add both readings to calculate units automatically.</div></div>
+          </div>
+          <div class="form-footer"><span>Fields marked * are required.</span><button class="calculate-button" type="submit"><span>Calculate electricity bill</span><b>↗</b></button></div>
+        </form>
+      </div>
+
+      <aside class="statement-card glass-card" id="statement">
+        <div class="statement-head"><div class="section-kicker">03 — YOUR STATEMENT</div><span class="statement-status"><i></i> AWAITING INPUT</span></div>
+        <div class="statement-brand"><span class="statement-logo">Vϟ</span><div><b>VOLTWISE</b><small>ELECTRICITY ESTIMATE</small></div></div>
+        <div class="empty-result" id="emptyState"><div class="empty-icon">ϟ</div><h3>Your statement starts here.</h3><p>Complete the details and calculate to generate your personalised electricity estimate.</p><div class="empty-rule"></div><div class="empty-meta"><span>SECURE LOCAL CALCULATION</span><span>NO PAYMENT REQUIRED</span></div></div>
+        <div id="billResult" hidden>
+          <div class="bill-number-row"><span>ESTIMATE REFERENCE</span><b id="billNumber">VW-000000</b></div>
+          <div class="amount-label">TOTAL ESTIMATED PAYABLE</div>
+          <div class="amount-value" id="totalAmount">₹0.00</div>
+          <div class="bill-summary"><span id="resultCaption">0 units · Delhi</span><span class="period-pill" id="periodCaption">MONTH</span></div>
+          <div class="statement-divider"></div>
+          <div class="customer-summary"><div><small>BILLED TO</small><b id="outName">Customer Name</b><span id="outAddress">Address not provided</span></div><div><small>CONNECTION</small><b id="outConnection">Domestic</b><span id="outConsumer">ID not provided</span></div></div>
+          <div class="charges-title"><b>Charge breakdown</b><small>AMOUNT (INR)</small></div>
+          <div class="charge-row"><span>Energy charges</span><b id="energyCharge">₹0.00</b></div>
+          <div class="charge-row"><span>Fixed service charges</span><b id="fixedCharge">₹0.00</b></div>
+          <div class="charge-row discount-row"><span>Demo subsidy adjustment</span><b id="subsidy">− ₹0.00</b></div>
+          <div class="charge-row"><span>Tax / duty estimate</span><b id="tax">₹0.00</b></div>
+          <div class="charge-total"><span>Amount payable</span><b id="payable">₹0.00</b></div>
+          <div class="statement-actions"><button id="downloadBtn" class="pdf-button"><span>↓</span> Download PDF bill</button><button id="saveBtn" class="save-button" title="Save estimate">＋</button></div>
+          <p class="statement-footnote">This is an educational estimate generated by VoltWise. It is not an official utility invoice.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="insights-section" id="insights">
+      <div class="section-top"><div><div class="section-kicker">THE VOLTWISE METHOD</div><h2>Clarity in every calculation.</h2></div><p>Designed to make electricity costs easier to understand.</p></div>
+      <div class="insight-grid">
+        <article class="insight-card"><span class="insight-index">01</span><div class="insight-icon">⌗</div><h3>Progressive slabs</h3><p>Consumption is divided into unit bands, with each band calculated at its demo rate.</p><div class="insight-tag">FAIRER BREAKDOWN</div></article>
+        <article class="insight-card"><span class="insight-index">02</span><div class="insight-icon">⌁</div><h3>Readable charges</h3><p>Energy, fixed charges, subsidy and estimated tax are shown separately.</p><div class="insight-tag">NO HIDDEN MATH</div></article>
+        <article class="insight-card"><span class="insight-index">03</span><div class="insight-icon">▤</div><h3>Portable statement</h3><p>Generate a branded PDF estimate that is easy to save, print or attach to a report.</p><div class="insight-tag">PDF READY</div></article>
+      </div>
+    </section>
+
+    <section class="history-section" id="history">
+      <div class="section-top"><div><div class="section-kicker">YOUR ACTIVITY</div><h2>Recent estimates</h2></div><button id="clearHistory" class="clear-button">Clear history ↗</button></div>
+      <div class="history-panel" id="historyList"><div class="history-empty"><span>◷</span><p>Your saved calculations will appear here.</p></div></div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-symbol">V<span>ϟ</span></span><span class="brand-copy">VOLTWISE<small>ENERGY MADE CLEAR</small></span></a><div class="footer-center">A C++ OOPs based academic project<br><span>Built to make energy estimates easier to understand.</span></div><div class="footer-right">© 2026 VOLTWISE<br><span>DEMO ESTIMATOR · NOT AN OFFICIAL BILL</span></div></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="bill_engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
